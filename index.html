@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>RPScLSp</title>
+</head>
+<body>
+
+<h2>Rock, Paper, Scissors, Lizard, Spock</h2>
+
+<p><img src="all.png" alt="All" width="25%" height="25%"></p>
+
+<p><img src="rock.png" alt="Rock" onclick="mychoice(0)" width="15%" height="15%"> 
+   <img src="paper.png" alt="Paper" onclick="mychoice(1)"width="15%" height="15%"> 
+   <img src="scissors.png" alt="Scissors" onclick="mychoice(2)"width="15%" height="15%">
+   <img src="lizard.png" alt="Lizard" onclick="mychoice(3)"width="15%" height="15%">
+   <img src="spock.png" alt="Spock" onclick="mychoice(4)"width="15%" height="15%"></p>
+
+<p id="choice">Please pick an image above: </p>
+
+<p id="opponent"></p>
+
+<p id="results"></p>
+
+<p id="score"></p>
+
+<script>
+var choices = ["ROCK", "PAPER", "SCISSORS","LIZARD","SPOCK"];
+var myscore = 0;
+var computerscore = 0;
+
+// Rows are me, columns are computer
+var whowon = [["Tied","Lost","Won","Won","Lost"],   //rock
+              ["Won","Tied","Lost","Lost","Won"],   //paper
+              ["Lost","Won","Tied","Won","Lost"],   //scissors
+              ["Lost","Won","Lost","Tied","Won"],   //lizard
+              ["Won","Lost","Won","Lost","Tied"]]   //spock
+
+function mychoice(x) {
+  document.getElementById("choice").innerHTML = "You have chosen <b>"+choices[x]+"</b>";
+
+var computer = Math.floor(Math.random() * choices.length );
+
+  document.getElementById("opponent").innerHTML = "The computer choose <b>" + choices[computer] + "</b>";
+  document.getElementById("results").innerHTML = choices[x] + " vs " + choices[computer] + " you " + whowon[x][computer];
+
+if (whowon[x][computer] == "Won") {  myscore = myscore +1;}
+if (whowon[x][computer] == "Lost") {  computerscore = computerscore +1;}
+
+  document.getElementById("score").innerHTML = "You have won "+myscore+" games, the computer has won "+computerscore+" games";
+}  
+  
+</script>
+
+</body>
+</html> 
